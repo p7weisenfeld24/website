@@ -1,0 +1,97 @@
+<html>
+<head>
+
+<body bgcolor="b7c1c3">
+
+<font color="black" face="Californian FB">
+
+<script language="javaScript">
+
+function greeting()
+{
+	alert("hello"); 
+	alert(currentDate.getHours);
+}
+
+function greeting2()
+{
+	var response = prompt("Enter Your Name"); // = is the assignment operator
+	alert("Hello there, " +response);
+}                                     // This assigns the element on the right to 
+                                      // the element on the left
+
+
+function greeting3()
+{
+	var name = confirm("Do you like the site?");
+	alert(name);
+}                                    
+           
+function guessing()
+{
+
+
+var usersGuess = -1
+var numOfGuesses = 0
+var rand=Math.random()*10+1;
+rand=parseInt(rand)
+
+
+
+
+
+
+	while (rand != usersGuess)
+   {
+	usersGuess = prompt("Enter Your Guess Between 1-10");
+	numOfGuesses = numOfGuesses + 1;
+	
+	if (usersGuess < rand)
+	{
+		alert("Incorrect, Guess is To Low. Try Again");
+	}
+	
+	else if (usersGuess > rand)
+	{
+		alert("Incorrect, Guess is To High. Try Again");
+	}
+	
+  }
+
+	alert("Congragulations, Guess Number is "+numOfGuesses);
+   
+}
+function DT()
+{
+alert("Just Kidding, I don't know how to do that")
+}
+</script>
+
+</head>
+<body>
+
+<h1> My First JavaScript </h1>
+
+ 
+ <br/>
+ <br/>
+ <input type="button" value="Click for Message" onclick="greeting()"/> 
+ 
+ <hr/>
+ <input type="button" value="Click for Personal Message" onclick="greeting2()"/> 
+ 
+ <hr/>
+ <input type="button" value="Click for Confirmation" onclick="greeting3()"/> 
+ 
+ <br/>
+ <hr/>
+ <input type="button" value="Click for Game" onclick="guessing()"/> 
+ <br/> <br/><br/><br/><br/><br/>  <br/>  <br/> <br/> <br/><br/><br/><br/><br/>  <br/>  <br/> 
+ 
+<input type="button" value="Click for Date and Time" onclick="DT()"/> 
+
+
+<hr/>
+<i> <a href="https://p7weisenfeld24.github.io/website/"> Return <a/></i> to Index page
+</body>
+</html>

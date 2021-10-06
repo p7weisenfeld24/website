@@ -1,0 +1,102 @@
+<html>
+<head>
+<script language="javaScript">
+var counter = 0;
+
+var clipLength = [ 16, 9, 21, 18, 23, 14 ]
+
+var picList = [ "images/Slideshow/UnitedStates2.jpg",
+				"images/Slideshow/China1.jpg",
+				"images/Slideshow/Brazil3.jpg",
+				"images/Slideshow/Sweden4.jpg",
+				"images/Slideshow/Wales5.jpg",
+				"images/Slideshow/Uruguay6.jpg" ];
+
+
+var clipList = [ "sounds/USA-anthem.mp3",
+				 "sounds/C.mp3",
+				 "sounds/B.mp3",
+				 "sounds/S.mp3",
+				 "sounds/W.mp3",
+				 "sounds/U.mp3" ];
+				 
+var timer;
+
+var autoStart = false;
+	 
+
+function nextPic()
+{
+	document.getElementById("display").src = picList[counter];
+	
+	document.getElementById("player").src = clipList[counter];
+	document.getElementById("player").play();
+	
+	
+
+}
+ 
+function run()
+{
+	
+	if(autoStart == false)
+	{
+		autoStart = true;
+		document.getElementById("runButton").value = "Pause";
+	}
+	else
+	{
+		autoStart = false;
+		document.getElementById("runButton").value = "Play";
+	}
+	++
+	
+	autoPlay();
+}
+
+function autoPlay()
+{
+	if(autoStart == true)
+	{
+		nextPic();
+		//alert(clipLength[counter]*1000);
+		timer = setTimeout( "autoPlay()", clipLength[counter]*1000 );
+		if( counter == picList.length-1)
+		{
+			counter = 0;
+		}
+		else
+		{
+			counter = counter+1;
+		}
+	}
+	else
+	{
+		clearTimeout(timer);
+	}
+	
+}
+
+
+</script>
+
+</head>
+<body>
+<center>
+<h1> National Flags</h1>
+
+<input type="button" value="Next Picture" onclick="nextPic()"/>
+
+<input type="button" value="Run Slideshow" id="runButton" onclick="run()"/>
+</br></br>
+
+<img src="images/Slideshow/TitleSlide.jpg " id="display" width="500"/>
+<audio id="player"> </audio>
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><hr/><br/>
+<i> <a href="index.html"> Return <a/></i> to Main Page 
+</center>
+</body>
+</html>

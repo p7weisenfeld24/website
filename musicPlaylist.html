@@ -1,0 +1,221 @@
+
+<html>
+<head> 
+<script language = "javaScript">
+
+var popLength = [ 230, 279, 132 ]
+var rapLength = [ 301, 303, 291 ]
+var classicRockLength = [ 243, 359, 390 ]
+var classicalLength = [ 170, 30, 147 ]
+
+var pop = [ "sounds/levitate.mp3" ,
+	        "sounds/perfect.mp3" ,
+		    "sounds/astro.mp3" ];
+
+var rap = [ "sounds/drake.mp3" ,
+		    "sounds/heya.mp3" ,
+		    "sounds/dre.mp3" ];
+
+var classicRock = [	"sounds/beatles.mp3" ,
+				    "sounds/queen.mp3" ,
+				    "sounds/eagles.mp3" ];
+				
+var classical = [ "sounds/canon.mp3" ,
+				  "sounds/elise.mp3" ,
+				  "sounds/nutcracker.mp3" ];
+
+var yourAge = 0
+var timer;
+var lengthArray;
+var buttonControl;
+var counter = 0
+
+var genre;
+
+function ageDefine()
+{
+	var age = document.getElementById("ageInput").value
+	
+	if(age == "")
+	{
+		alert("Please Enter Age");
+	}
+	else
+	{
+	
+		if(age >= 11 && age <= 35)
+		{
+			if(age <= 21)
+			{
+			
+				yourAge = 1;
+				ageGroup = true;
+				document.getElementById("test").value = musicGroup(true);
+				
+				
+				
+			}
+			else
+			{
+				
+				yourAge = 2;
+				ageGroup = true;
+				document.getElementById("test").value = musicGroup(true);
+				
+				
+
+			}
+		}
+		else
+		{
+		
+			if(age >= 66 && age <= 100)
+			{
+				
+				yourAge = 3
+				ageGroup = false;
+				document.getElementById("test").value = musicGroup(false);
+				
+				
+				
+			}
+			else
+			{
+	
+				yourAge = 4;
+				ageGroup = false;
+				document.getElementById("test").value = musicGroup(false);
+			
+				
+			}
+		
+		}
+		
+	}
+}
+
+function music()
+{
+	var style = setType(genre);
+	if(counter < 3)
+	{
+		//alert(classicalLength[counter]);
+		document.getElementById("player").src = style[counter];
+	    document.getElementById("player").play();		
+		timer = setTimeout("music()", lengthArray[counter] * 1000);
+		counter++;
+		
+	}
+	else 
+		counter = 0;
+}
+
+
+
+
+
+function musicGroup(ageGroup)
+{
+
+	
+	if(ageGroup == true)
+	{
+		//alert("true");
+		
+		if(yourAge == 1)
+		{
+			genre = "classical";
+		}
+		else
+		{
+			genre = "classicRock";
+		}
+		
+	}
+		
+	else
+	{
+		//alert("false");
+		
+		if(yourAge == 3)
+		{
+			genre = "rap";
+		}
+		else
+		{
+			genre = "pop";
+		}
+	
+	}
+	return(genre);
+
+}
+
+function setType(genre)
+{
+	var whichArray;
+	if( genre == "rap")
+	{
+		whichArray = rap;
+		lengthArray = rapLength;
+	}
+	else
+	{
+		if(genre == "pop")
+		{
+			whichArray = pop;
+			lengthArray = popLength;
+		}
+		else
+		{
+			if(genre == "classicRock")
+			{
+				whichArray = classicRock;
+				lengthArray = classicRockLength;	
+			}
+			else
+			{
+				whichArray = classical;
+				lengthArray = classicalLength;	
+			}
+		
+		}
+	}
+	return whichArray;
+}
+
+
+</script>
+</head>
+<body>
+<center>
+<h1> Music Playlist </h1>
+<center>
+<br/>
+<br/>
+<br/>
+Input Age-
+<br/>
+<input type = "text" size="40" id="ageInput"/>  
+
+
+
+<br/><br/><br/><br/>
+<img src="images/mn3.png" width="500" id="image"/>
+<br/><br/><br/>
+<input type="button" size="120" value="Enter" onclick="ageDefine()"/>
+<input type="button" size="120" value="Play" id="playButton" onclick="music()"/>
+<br/>
+
+<br/><br/>
+Genre-
+<br/>
+<input type = "text" size="20" id="test"/>  
+<audio id="player"> </audio>
+
+
+
+
+
+</center> 
+</html>

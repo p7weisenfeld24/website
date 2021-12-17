@@ -34,6 +34,12 @@
   index = input.indexOf(fruit);
   alert(output[index]);
  }
+ 
+ function play()
+ {
+  document.getElementById("player").src = "sounds/B.mp3"
+  document.getElementByID("player").play();
+ }
  </script>
 <body bgcolor="blue">
 <font color="white" face="Courier">
@@ -42,8 +48,10 @@
 <input type="button" value="Click" id="button" onclick="hi()"> 
 <input type="button" value="Random" id"randomButton" onclick="rand()">
 <input type="button" value="Fruit" id="fruit" onclick="arrayTest()">
+ <input type ="button" value="play" id="play" onclick="play()">
   <br/><br/>
 <input type="text" size="20" id="text">
+  <audio id="player"> </audio>
   </center>
 </font>
 </body>

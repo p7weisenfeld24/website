@@ -1,0 +1,193 @@
+<html>
+<head>
+<script language = JavaScript>
+var words = ["Pyramids of Giza", 
+		     "Colossus of Rhodes",
+		     "Hanging Gardens of Babylon",
+		     "Lighthouse of Alexandria",
+		     "Statue of Zeus",
+		     "Temple of Diana",
+		     "Mausoleum of Halicarnassus"]
+			 
+var defs = ["Egypt",
+            "Aegean Basin",
+			"Mesopatamia",
+			"Egyptian Coast",
+			"Olympia",
+			"Ephesus",
+			"Turkey"]
+
+var asked = [false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false]
+		
+var qAsked=0;
+
+var score = 0;
+
+var counter = 0;
+
+var answerList;
+		
+function nextQ()
+{
+	var termsOrDefs = document.getElementById("terms").checked;
+	displayClue(termsOrDefs);//terms = termsOrDefs
+	document.getElementById("answer").value = "";
+	document.getElementById("image").style.visibility = "hidden";
+	
+}		  
+
+
+
+function displayClue(terms)
+{
+	qAsked = getUnusedIndex()
+	
+	if(terms == true)
+	{
+		
+			document.getElementById("clue").value = words[qAsked];
+	}
+	else
+	{
+		
+			document.getElementById("clue").value = defs[qAsked];	
+	}
+	
+}
+
+function nextA()
+{
+ 
+	var termsOrDefs = document.getElementById("terms").checked;
+	checkAnswer(termsOrDefs);
+}
+
+		  
+function checkAnswer(terms)
+{
+
+	var userAns = document.getElementById("answer").value;
+	
+	if(terms == true)
+	{
+		answerList = defs;
+	}
+	else
+	{
+		answerList = words;
+	}
+		
+	if(userAns == answerList[qAsked])
+	{
+	
+		score++;
+		//counter++;
+		document.getElementById("winLoss").src = "images/Green.jpg";
+		//alert(score);
+	}
+	else
+	{
+		
+		//counter++;
+		document.getElementById("winLoss").src = "images/redx1.png";
+		//alert(score)
+		
+	}	
+	var winWidth = window.innerWidth/2-100;
+	document.getElementById("image").style.left = winWidth;
+	document.getElementById("image").style.visibility = "visible";
+	
+	if(counter < words.length-1)
+	{
+		counter++;
+	}
+	else
+	{
+		endQuiz();
+	}
+}
+
+function getUnusedIndex()
+{
+	var rand = Math.floor(Math.random()* asked.length);
+	if(counter < asked.length)
+	{
+		while(asked[rand] == true)
+		{
+			rand = Math.floor(Math.random()* asked.length);
+		}
+	}
+	else
+	{
+		rand = -1;
+	}
+	asked[rand] = true;
+	return rand;
+}
+
+function endQuiz()
+{
+	alert("Test Over. Your Score is " + score +"/7")
+	score = 0;
+	counter = 0;
+	document.getElementById("winLoss").src = "images/testPic.png";
+	
+	for(i = 0; i < asked.length;i++)
+	{
+		asked[i] = false;
+	}
+	
+}
+
+</script>
+</head>
+<body>
+<center>
+<h1>Vocab Quiz</h1>
+
+<input type="radio" id="terms" name="qType" onchange="nextA()" checked>
+  <label for="terms">Words</label>
+<input type="radio" id="defs" name="qType" on>
+  <label for="defs">Definitions</label>
+
+<br/> 
+
+<br/><br/>
+<input type="button" value="Next" onclick ="nextQ()"/>
+<br/><br/>
+<input type = "text" id="clue" readonly size=40>
+   
+<br/><br/>
+<input type = "text" id="answer" onfocusout="nextA()" size=40>
+<br/><br/>
+<input type="button" value="Check Answer"/>
+<br/><br/>
+</center> <br/>
+<div id = "image" style = "position:absolute; top:250; left:515;"> 
+<br/></center>
+<img src = "images/testPic.png"  id = "winLoss">
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<i> Return to <a href="index.html">Index page <a/></i> 
+
+</div>
+
+</body>
+</html>
+
